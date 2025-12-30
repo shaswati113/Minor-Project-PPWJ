@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Online Quiz Application</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&family=Mountains+of+Christmas:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>Online Quiz Application</h1>
+    <div id="container" style="display: none;">
+        <div id="question"></div>
+        <div id="answer">
+            <div class="option" id="0" onclick="checkAnswer(0)"></div>
+            <div class="option" id="1" onclick="checkAnswer(1)"></div>
+            <div class="option" id="2" onclick="checkAnswer(2)"></div>
+            <div class="option" id="3" onclick="checkAnswer(3)"></div>
+        </div>
+        <button id="next" onclick="changeQuestion()">Next Question</button>
+    </div>
+    <div id="scoreBox">Score: <div style="display: inline;" id="score"></div>/10</div>
+        <div id="finalMsg" style="display: none;">QUIZ Completed!!!</div>
+    <button id="start" onclick="startQuiz()">Start Quiz</button>
+    <script src="script.js"></script>
+</body>
+</html>
