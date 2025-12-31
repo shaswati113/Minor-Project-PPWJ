@@ -59,9 +59,9 @@ let scoreBox=document.getElementById("score");
 let nextButton=document.getElementById("next");
 let startButton=document.getElementById("start");
 let score=0;
-scoreBox.textContent=score;
 let qn=0;
 let x=0;
+let check=0;
 function startQuiz(){
     if(startButton.textContent=="Restart"){
         startButton.style.backgroundColor="green";
@@ -73,32 +73,34 @@ function startQuiz(){
         startButton.textContent="Restart";
         container.style.display="block";
     }
-    qn=0;
-    score=0;
-    scoreBox.textContent=score;
+    qn=-1;
     changeQuestion();
     document.getElementById('finalMsg').style.display="none";
-
+    score=0;
+    scoreBox.textContent=0;
 }
 function changeQuestion(){
+    update();
     highlight();
+    score= check==1? score=score+1:  score;
+    scoreBox.textContent=score;
     questionBox.textContent=quiz[qn].question;
     for(var i=0;i<4;i++){
         optionsList[i].innerText=quiz[qn].options[i];
     }
+    check=0;
 }
 function checkAnswer(x){
     if((quiz[qn].options[x]==quiz[qn].answer) && (questionBox.innerText==quiz[qn].question)){
         console.log("right answer!")
-        score+=1;
-        scoreBox.textContent=score;
-        optionsList.onclick=null;
-        optionsList[x].classList.add("highlight");
-        update(x);
+        check=1;
     }
     else{
         console.log("wrong answer!")
+        check=0;
     }
+    highlight();
+    optionsList[x].classList.add("highlight");
 }
 function update(){
     if(qn==9){
@@ -112,8 +114,9 @@ function update(){
     }
 }
 function highlight() {
-    for (let index = 0; index < optionsList.length; index++) {
-        const element = optionsList[index];
-        element .classList.remove("highlight")
+    for (let i = 0; i < optionsList.length; i++) {
+        const e = optionsList[i];
+        e.classList.remove("highlight")
     }
 }
+
